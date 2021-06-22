@@ -1,10 +1,25 @@
 import logo from "./logo.svg";
 import "./App.css";
-import React from "react";
-import Greet from "./Greet";
+import React, { useState } from "react";
 
 function App() {
-  return <Greet name="Kevin" />;
+  const [counter, setCounter] = useState(-5);
+
+  const incrementCounter = () => {
+    setCounter((prevCounter) => (prevCounter += 1));
+  };
+
+  const decrementCounter = () => {
+    setCounter((prevCounter) => (prevCounter -= 1));
+  };
+
+  return (
+    <div className="App">
+      <button onClick={decrementCounter}>-</button>
+      <p> {counter} </p>
+      <button onClick={incrementCounter}>+</button>
+    </div>
+  );
 }
 
 export default App;
