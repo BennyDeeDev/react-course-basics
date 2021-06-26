@@ -3,16 +3,16 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 
 function App() {
-  const [counter, setCounter] = useState(-5);
+  const [counter, setCounter] = useState(0);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const interval = setInterval(() => {
       incrementCounter();
     }, 500);
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, []); */
 
   const incrementCounter = () => {
     setCounter((prevCounter) => (prevCounter += 1));
@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={decrementCounter}>-</button>
+      {counter >= 1 && <button onClick={decrementCounter}>-</button>}
       <p> {counter} </p>
       <button onClick={incrementCounter}>+</button>
     </div>
