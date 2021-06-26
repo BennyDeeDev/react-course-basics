@@ -1,9 +1,18 @@
 import logo from "./logo.svg";
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function App() {
   const [counter, setCounter] = useState(-5);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      incrementCounter();
+    }, 500);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   const incrementCounter = () => {
     setCounter((prevCounter) => (prevCounter += 1));
