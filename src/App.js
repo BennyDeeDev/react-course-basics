@@ -1,33 +1,48 @@
 import logo from "./logo.svg";
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import Counter from "./Counter";
 
 function App() {
-  const [counter, setCounter] = useState(0);
+  const [counterList, setCounterList] = useState([
+    {
+      id: 1,
+      count: 2,
+    },
+    {
+      id: 2,
+      count: 3,
+    },
+    {
+      id: 3,
+      count: 4,
+    },
+    {
+      id: 4,
+      count: 5,
+    },
+  ]);
 
-  /* useEffect(() => {
-    const interval = setInterval(() => {
-      incrementCounter();
-    }, 500);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []); */
-
-  const incrementCounter = () => {
-    setCounter((prevCounter) => (prevCounter += 1));
-  };
-
-  const decrementCounter = () => {
-    setCounter((prevCounter) => (prevCounter -= 1));
+  const handleCounterChange = (counter) => {
+    setCounterList((prevCounterList) =>
+      prevCounterList.map((c) => {
+        if (c.id === counter.id) return counter;
+        return c;
+      })
+    );
   };
 
   return (
-    <div className="App">
-      {counter >= 1 && <button onClick={decrementCounter}>-</button>}
-      <p> {counter} </p>
-      <button onClick={incrementCounter}>+</button>
-    </div>
+    <>
+      {counterList.map((counter) => (
+        <Counter
+          key={counter.id}
+          count={counter.count}
+          id={counter.id}
+          onCounterChange={handleCounterChange}
+        />
+      ))}
+    </>
   );
 }
 
